@@ -1,0 +1,59 @@
+{
+  "name": "@hooktunnel/tsuu",
+  "version": "1.0.3",
+  "type": "module",
+  "description": "hooktunnel CLI - Forward webhooks to your localhost",
+  "main": "dist/index.js",
+  "bin": {
+    "tsuu": "dist/index.js"
+  },
+  "scripts": {
+    "build": "bun build src/index.ts --outdir dist --target=node --format=esm && bun x tsc --emitDeclarationOnly",
+    "dev": "bun --watch src/index.ts",
+    "start": "bun dist/index.js"
+  },
+  "keywords": [
+    "webhook",
+    "development",
+    "cli",
+    "testing",
+    "tunnel",
+    "localhost",
+    "ngrok",
+    "webhook-testing",
+    "developer-tools"
+  ],
+  "author": {
+    "name": "hooktunnel",
+    "url": "https://hooktunnel.dev"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hook-tunnel/tsuu.git"
+  },
+  "homepage": "https://hooktunnel.dev",
+  "bugs": {
+    "url": "https://github.com/hook-tunnel/tsuu/issues"
+  },
+  "dependencies": {
+    "axios": "^1.13.2",
+    "chalk": "^5.6.2",
+    "commander": "^14.0.2",
+    "dotenv": "^17.2.3",
+    "node-fetch": "^3.3.2",
+    "ora": "^9.0.0",
+    "prompt-sync": "^4.2.0",
+    "ws": "^8.18.3"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "@types/prompt-sync": "^4.2.3",
+    "@types/ws": "^8.18.1",
+    "tsc-esm-fix": "^3.1.2",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}
