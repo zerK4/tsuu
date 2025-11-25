@@ -1,6 +1,6 @@
 {
   "name": "@hooktunnel/tsuu",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "type": "module",
   "description": "hooktunnel CLI - Forward webhooks to your localhost",
   "main": "dist/index.js",
