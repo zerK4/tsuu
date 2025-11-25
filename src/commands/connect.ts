@@ -6,6 +6,8 @@ import path from "path";
 import os from "os";
 import axios from "axios";
 import { showResponse } from "../lib/showResponse";
+import { updateUserSettings } from "../lib/updateUserSettings";
+import { Config } from "../types";
 
 interface ConnectOptions {
   port?: string;
@@ -117,7 +119,7 @@ export async function connect(options: ConnectOptions) {
       process.exit(1);
     }
 
-    const config = JSON.parse(fs.readFileSync(configPath, "utf8"));
+    const config: Config = JSON.parse(fs.readFileSync(configPath, "utf8"));
     const { apiKey, user } = config;
 
     const wsUrl = `${WS_URL}/ws?userId=${user.id || "demo"}&token=${apiKey}${options.endpoint ? `&endpointId=${options.endpoint}` : ""}`;
@@ -169,7 +171,18 @@ export async function connect(options: ConnectOptions) {
             break;
 
           case "webhook":
-            await forwardWebhook(message.data, options, message.endpoint);
+            await forwardWebhook(
+              message.data,
+              options,
+              message.endpoint,
+              config,
+            );
+            break;
+
+          case "userSettings":
+            if (message.data) {
+              updateUserSettings(JSON.stringify(message.data) as any);
+            }
             break;
 
           case "pong":
@@ -249,6 +262,7 @@ async function forwardWebhook(
   webhook: any,
   options: ConnectOptions,
   endpoint: any,
+  config: Config,
 ) {
   const startTime = Date.now();
   const timestamp = new Date().toLocaleTimeString("en-US", {
@@ -299,10 +313,7 @@ async function forwardWebhook(
       url: targetUrl,
       method: webhook.method,
       headers: cleanHeaders,
-      data:
-        typeof webhook.body === "string"
-          ? JSON.parse(webhook.body)
-          : webhook.body,
+      data: webhook.body,
       validateStatus: () => true,
     });
 
@@ -341,7 +352,9 @@ async function forwardWebhook(
 
     console.log(chalk.blue("└" + "─".repeat(58) + "┘"));
 
-    await showResponse(endpoint, response);
+    if (config.user.settings?.showWebhookResponseInConsole) {
+      await showResponse(response);
+    }
   } catch (error) {
     const duration = Date.now() - startTime;
 
