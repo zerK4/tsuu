@@ -24,7 +24,7 @@ export async function list() {
     const config = JSON?.parse(configFile);
     const { user, apiKey } = config;
 
-    const data = await fetch(`${API_URL}/lab/endpoints`, {
+    const data = await fetch(`${API_URL}/api/lab/endpoints`, {
       headers: {
         Authorization: `Bearer ${apiKey}`,
       },
@@ -60,6 +60,8 @@ export async function list() {
         "Tip: Use 'tsuu connect --endpoint <slug>' to connect to a specific endpoint",
       ),
     );
+
+    process.exit(0);
   } catch (error) {
     console.error(chalk.red("Error fetching endpoints:"), error);
     process.exit(1);

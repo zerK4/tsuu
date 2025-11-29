@@ -25,9 +25,10 @@ export async function login() {
     );
     process.exit(1);
   }
+  console.log(API_URL, "the url");
 
   try {
-    const response = await fetch(`${API_URL}/auth/verify`, {
+    const response = await fetch(`${API_URL}/api/auth/verify`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -68,6 +69,7 @@ export async function login() {
 
     console.log(chalk.green("✅ Successfully authenticated!"));
     console.log(chalk.gray(`Welcome, ${data.user.email}!`));
+    process.exit(0);
   } catch (error) {
     console.error(
       chalk.red("❌ Authentication failed:"),
