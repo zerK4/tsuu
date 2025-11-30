@@ -219,7 +219,9 @@ export async function connect(options: ConnectOptions) {
       const troubleshooting = [
         chalk.bold.yellow("Troubleshooting"),
         "",
-        chalk.white("• Is the hooktunnel server running?"),
+        chalk.white("• Did you run:") +
+          chalk.cyan(" tsuu login") +
+          chalk.white("?"),
         chalk.white("• Check your network connection"),
         chalk.white("• Verify your API key is valid"),
         chalk.white("• Try running:") + chalk.cyan(" tsuu login"),

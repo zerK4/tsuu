@@ -304,23 +304,6 @@ Configuration is stored in `~/.hooktunnel/config.json`:
 
 ---
 
-## 🌐 Environment Variables
-
-| Variable  | Description          | Default                      |
-| --------- | -------------------- | ---------------------------- |
-| `WS_URL`  | WebSocket server URL | `wss://pluto.hooktunnel.dev` |
-| `API_URL` | API server URL       | `https://hooktunnel.dev/api` |
-
-**Custom Server Example:**
-
-```bash
-export WS_URL=wss://custom.hooktunnel.dev
-export API_URL=https://custom.hooktunnel.dev/api
-tsuu connect
-```
-
----
-
 ## 🐛 Troubleshooting
 
 ### Authentication Failed
@@ -423,7 +406,7 @@ MIT License - see [LICENSE](LICENSE) for details
 ## 🔗 Links
 
 - 🌐 **Website:** [hooktunnel.dev](https://hooktunnel.dev)
-- 📚 **Documentation:** [hooktunnel.dev/docs](https://hooktunnel.dev/docs)
+- 📚 **Documentation:** [hooktunnel.dev/docs](https://hooktunnel.dev/get-started)
 
 ---
 
@@ -463,7 +446,7 @@ tsuu connect --port 3000
 ---
 
 <p align="center">
-  Made with ❤️ by developers, for developers
+  Made with ❤️
 </p>
 
 <p align="center">
