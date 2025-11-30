@@ -3,7 +3,6 @@ import { Command } from "commander";
 import { connect } from "./commands/connect";
 import { login } from "./commands/login";
 import { list } from "./commands/list";
-import { history } from "./commands/history";
 import chalk from "chalk";
 import { config } from "dotenv";
 
@@ -33,13 +32,6 @@ program
   .action(connect);
 
 program.command("list").description("List available endpoints").action(list);
-
-program
-  .command("history")
-  .description("View recent webhooks")
-  .option("-e, --endpoint <endpoint>", "Filter by endpoint")
-  .option("-l, --limit <limit>", "Number of webhooks to show", "10")
-  .action(history);
 
 program
   .command("help")
@@ -97,22 +89,6 @@ program
     console.log(chalk.dim("    Show all your configured endpoints"));
     console.log(chalk.yellow("    Example:"), chalk.white("tsuu list\n"));
 
-    // console.log(chalk.cyan("  history"));
-    // console.log(chalk.dim("    View recent webhook deliveries"));
-    // console.log(chalk.white("    Options:"));
-    // console.log(chalk.dim("      -e, --endpoint <slug>   Filter by endpoint"));
-    // console.log(
-    //   chalk.dim(
-    //     "      -l, --limit <number>    Number of webhooks (default: 10)",
-    //   ),
-    // );
-    // console.log(chalk.yellow("    Examples:"));
-    // console.log(chalk.white("      hooktunnel history"));
-    // console.log(
-    //   chalk.white("      hooktunnel history --endpoint stripe-webhooks"),
-    // );
-    // console.log(chalk.white("      hooktunnel history --limit 50\n"));
-
     console.log(chalk.cyan("  help"));
     console.log(chalk.dim("    Show this help message\n"));
 
@@ -141,10 +117,6 @@ program
       chalk.dim("to tunnel webhooks to localhost"),
     );
     console.log(chalk.dim("  • Test your webhook handlers locally"));
-    // console.log(
-    //   chalk.dim("  • View webhook history with"),
-    //   chalk.white("hooktunnel history\n"),
-    // );
 
     console.log(chalk.bold("MORE INFO"));
     console.log(
